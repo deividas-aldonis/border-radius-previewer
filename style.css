@@ -112,6 +112,11 @@ input {
   display: flex;
 }
 
+.copied,
+.copy-btn.copied:hover {
+  background-color: #50b950;
+}
+
 @media (max-width: 1024px) {
   .border-radius,
   .border-radius-settings {

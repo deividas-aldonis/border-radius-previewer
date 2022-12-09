@@ -15,6 +15,7 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div class="error-message">Max number is 1000!</div>
     <div class="container">
       <h1 class="title">Border radius previewer</h1>
 
@@ -25,8 +26,8 @@
       <div class="border-radius">
         <span class="text">border-radius:</span>
         <div class="copy text">
-          <span class="copy-value">0px 0px 0px 0px</span>
-          <button class="copy-btn">COPY</button>
+          <span class="copy-value">0px</span>
+          <button class="copy-btn copied">COPY</button>
         </div>
       </div>
 
@@ -34,7 +35,13 @@
         <div>
           <span class="text">border-top-left-radius:</span>
           <div class="inputs">
-            <input class="border-top-left-input" type="number" />
+            <input
+              class="border-top-left-input"
+              type="number"
+              min="0"
+              max="1000"
+              pattern="[\d]{1, 4}"
+            />
             <select class="border-top-left-select" name="units">
               <option value="px">px</option>
               <option value="em">em</option>
@@ -46,7 +53,12 @@
         <div>
           <span class="text">border-top-right-radius:</span>
           <div class="inputs">
-            <input class="border-top-right-input" type="number" />
+            <input
+              class="border-top-right-input"
+              type="number"
+              min="0"
+              max="1000"
+            />
             <select class="border-top-right-select" name="units">
               <option value="px">px</option>
               <option value="em">em</option>
@@ -58,7 +70,12 @@
         <div>
           <span class="text">border-bottom-right-radius:</span>
           <div class="inputs">
-            <input class="border-bottom-right-input" type="number" />
+            <input
+              class="border-bottom-right-input"
+              type="number"
+              min="0"
+              max="1000"
+            />
             <select class="border-bottom-right-select" name="units">
               <option value="px">px</option>
               <option value="em">em</option>
@@ -70,7 +87,12 @@
         <div>
           <span class="text">border-bottom-left-radius:</span>
           <div class="inputs">
-            <input class="border-bottom-left-input" type="number" />
+            <input
+              class="border-bottom-left-input"
+              type="number"
+              min="0"
+              max="1000"
+            />
             <select class="border-bottom-left-select" name="units">
               <option value="px">px</option>
               <option value="em">em</option>
