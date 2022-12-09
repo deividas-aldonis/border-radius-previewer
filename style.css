@@ -117,6 +117,31 @@ input {
   background-color: #50b950;
 }
 
+.error-message {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+
+  padding: 12px;
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 3px;
+  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+
+  background-color: #0b0c0c;
+
+  text-align: center;
+  font-weight: bold;
+
+  transform: translate(0px, 0px);
+  transition: all 150ms ease-in-out;
+}
+
+.hide {
+  transform: translate(calc(-100% - 20px), 0);
+}
+
 @media (max-width: 1024px) {
   .border-radius,
   .border-radius-settings {

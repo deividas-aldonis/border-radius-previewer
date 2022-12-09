@@ -17,7 +17,11 @@ const borderBottomRightSelect = document.querySelector(
 const box = document.querySelector(".box");
 const copyValue = document.querySelector(".copy-value");
 const copyBtn = document.querySelector(".copy-btn");
-let timeoutID = null;
+const errorMessage = document.querySelector(".error-message");
+let clipboardID = null;
+let errorID;
+let error = false;
+let previousInput = null;
 
 const changeBorderRadius = (value, property, unit) => {
   box.style[property] = (value || 0) + unit;
@@ -26,24 +30,39 @@ const changeBorderRadius = (value, property, unit) => {
   copyValue.textContent = borderRadius;
 };
 
-// const validateInput = (input) => {
+const validateInput = (input) => {
+  if (Number.isFinite(input) && input > 1000) {
+    if (previousInput && previousInput > input) {
+      previousInput = input;
+      return;
+    }
+    clearTimeout(errorID);
 
-// };
+    errorMessage.classList.remove("hide");
+    error = true;
+
+    errorID = setTimeout(() => {
+      errorMessage.classList.add("hide");
+    }, 3000);
+
+    previousInput = input;
+  } else error = false;
+};
 
 const copyToClipboard = () => {
-  clearTimeout(timeoutID);
+  clearTimeout(clipboardID);
 
-  const range = document.createRange();
-  range.selectNode(copyValue);
-  window.getSelection().removeAllRanges(); // clear current selection
-  window.getSelection().addRange(range); // to select text
+  const input = document.createElement("input");
+  input.setAttribute("value", "border-radius:" + copyValue.textContent);
+  document.body.appendChild(input);
+  input.select();
   document.execCommand("copy");
-  window.getSelection().removeAllRanges(); // to deselect
+  document.body.removeChild(input);
 
   copyBtn.textContent = "COPIED!";
   copyBtn.classList.add("copied");
 
-  timeoutID = setTimeout(() => {
+  clipboardID = setTimeout(() => {
     copyBtn.classList.remove("copied");
     copyBtn.textContent = "COPY";
   }, 2000);
@@ -52,7 +71,8 @@ const copyToClipboard = () => {
 copyBtn.addEventListener("click", copyToClipboard);
 
 borderTopLeftInput.addEventListener("input", (e) => {
-  validateInput(e.target.value);
+  validateInput(e.target.valueAsNumber);
+  if (error) return;
 
   changeBorderRadius(
     e.target.value,
@@ -61,7 +81,8 @@ borderTopLeftInput.addEventListener("input", (e) => {
   );
 });
 borderTopRightInput.addEventListener("input", (e) => {
-  validateInput(e.target.value);
+  validateInput(e.target.valueAsNumber);
+  if (error) return;
 
   changeBorderRadius(
     e.target.value,
@@ -70,7 +91,8 @@ borderTopRightInput.addEventListener("input", (e) => {
   );
 });
 borderBottomLeftInput.addEventListener("input", (e) => {
-  validateInput(e.target.value);
+  validateInput(e.target.valueAsNumber);
+  if (error) return;
 
   changeBorderRadius(
     e.target.value,
@@ -79,7 +101,8 @@ borderBottomLeftInput.addEventListener("input", (e) => {
   );
 });
 borderBottomRightInput.addEventListener("input", (e) => {
-  validateInput(e.target.value);
+  validateInput(e.target.valueAsNumber);
+  if (error) return;
 
   changeBorderRadius(
     e.target.value,
