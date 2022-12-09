@@ -118,7 +118,7 @@ input {
 }
 
 .error-message {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   z-index: 2;
@@ -172,7 +172,9 @@ input {
     align-items: flex-start;
     gap: 4px;
   }
-
+  .copy {
+    width: 100%;
+  }
   .border-radius-settings > div {
     display: flex;
     flex-direction: column;
@@ -183,6 +185,10 @@ input {
 
   .copy {
     flex-direction: column;
+  }
+
+  .inputs {
+    width: 100%;
   }
 
   input {
