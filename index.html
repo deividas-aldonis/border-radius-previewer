@@ -5,10 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Border radius previewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>Border radius previewer</h1>
+    <div class="container">
+      <h1 class="title">Border radius previewer</h1>
+
+      <div class="generator">
+        <div class="box"></div>
+      </div>
+
+      <div class="settings">
+        <div class="output">
+          <span>border-radius:</span>
+          <div class="border-radius-value">25px 10px 12px 20px</div>
+          <div class="copy-btn">COPY</div>
+        </div>
+
+        <div class="property">
+          <span>border-top-left-radius:</span>
+
+          <input type="number" />
+          <select name="units">
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="%">%</option>
+          </select>
+        </div>
+
+        <div class="property">
+          <span>border-top-right-radius:</span>
+          <input type="number" />
+          <select name="units">
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="%">%</option>
+          </select>
+        </div>
+
+        <div class="property">
+          <span>border-bottom-right-radius:</span>
+          <input type="number" />
+          <select name="units">
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="%">%</option>
+          </select>
+        </div>
+
+        <div class="property">
+          <span>border-bottom-left-radius:</span>
+          <input class="property-input" type="number" />
+          <select name="units">
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="%">%</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
