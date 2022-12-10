@@ -31,22 +31,31 @@ const changeBorderRadius = (value, property, unit) => {
 };
 
 const validateInput = (input) => {
-  if (Number.isFinite(input) && input > 1000) {
-    if (previousInput && previousInput > input) {
+  previousInput = previousInput ?? 0;
+
+  if (Number.isFinite(input) && input <= 1000) {
+    error = false;
+    previousInput = input;
+  } else if (Number.isFinite(input) && input > 1000) {
+    console.log(input, previousInput);
+    if (previousInput > input) {
       previousInput = input;
       return;
     }
-    clearTimeout(errorID);
 
+    clearTimeout(errorID);
     errorMessage.classList.remove("hide");
-    error = true;
 
     errorID = setTimeout(() => {
       errorMessage.classList.add("hide");
     }, 3000);
 
+    error = true;
     previousInput = input;
-  } else error = false;
+  } else {
+    error = false;
+    previousInput = null;
+  }
 };
 
 const copyToClipboard = () => {
@@ -112,6 +121,9 @@ borderBottomRightInput.addEventListener("input", (e) => {
 });
 
 borderTopLeftSelect.addEventListener("change", (e) => {
+  validateInput(borderTopLeftInput.valueAsNumber);
+  if (error) return;
+
   changeBorderRadius(
     borderTopLeftInput.value,
     "borderTopLeftRadius",
@@ -119,6 +131,9 @@ borderTopLeftSelect.addEventListener("change", (e) => {
   );
 });
 borderTopRightSelect.addEventListener("change", (e) => {
+  validateInput(borderTopRightInput.valueAsNumber);
+  if (error) return;
+
   changeBorderRadius(
     borderTopRightInput.value,
     "borderTopRightRadius",
@@ -126,6 +141,9 @@ borderTopRightSelect.addEventListener("change", (e) => {
   );
 });
 borderBottomLeftSelect.addEventListener("change", (e) => {
+  validateInput(borderBottomLeftInput.valueAsNumber);
+  if (error) return;
+
   changeBorderRadius(
     borderBottomLeftInput.value,
     "borderBottomLeftRadius",
@@ -133,6 +151,9 @@ borderBottomLeftSelect.addEventListener("change", (e) => {
   );
 });
 borderBottomRightSelect.addEventListener("change", (e) => {
+  validateInput(borderBottomRightInput.valueAsNumber);
+  if (error) return;
+
   changeBorderRadius(
     borderBottomRightInput.value,
     "borderBottomRightRadius",
